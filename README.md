@@ -1,6 +1,6 @@
 gwt-esri-examples
 =================
-A simple example showing how to use the [https://github.com/CSTARS/gwt-esri](gwt-esri) API.
+A simple example showing how to use the [gwt-esri](https://github.com/CSTARS/gwt-esri) API.
 
 ## Trying it out
 On a Unix-like operating system:
