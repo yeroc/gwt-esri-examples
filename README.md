@@ -17,4 +17,4 @@ cd ../gwt-esri-examples
 mvn package
 # the previous command will create a war file named target/gwt-esri-examples.war which 
 # you can deploy to your favourite web container that supports Servlet 3
-
+```
