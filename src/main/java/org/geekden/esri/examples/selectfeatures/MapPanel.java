@@ -46,8 +46,6 @@ public class MapPanel extends SimplePanel {
       OverviewMap.Parameters overviewParams = OverviewMap.Parameters.create();
       overviewParams.setAttachTo("top-right");
       overviewParams.setMap(map);
-      overviewParams.setVisible(true);
-      overviewParams.showMaximizeButton(true);
       
       new OverviewMap(overviewParams).startup();
       
