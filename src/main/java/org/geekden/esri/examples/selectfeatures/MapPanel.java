@@ -16,11 +16,11 @@ public class MapPanel extends SimplePanel {
   
   private static final AtomicLong mapIdGenerator = new AtomicLong();
   
-  private final MapLoadHandler onMapLoad;
+  private final MapLoadHandler onMapLoadCallback;
   private final Extent initialExtent;
   
   public MapPanel(MapLoadHandler callback, Extent initialExtent) {
-    this.onMapLoad = callback;
+    this.onMapLoadCallback = callback;
     this.initialExtent = initialExtent;
     
     // The container for an ESRI map MUST have an id assigned...
@@ -39,6 +39,23 @@ public class MapPanel extends SimplePanel {
     Util.addEsriLoadHandler(onEsriLoad);
   }
   
+  private MapLoadHandler onMapLoad = new MapLoadHandler() {
+
+    @Override
+    public void onLoad(MapWidget map)
+    {
+      OverviewMap.Parameters overviewParams = OverviewMap.Parameters.create();
+      overviewParams.setAttachTo("bottom-right");
+      overviewParams.setMap(map);
+      overviewParams.setVisible(false);
+      overviewParams.showMaximizeButton(true);
+      
+      new OverviewMap(overviewParams).startup();
+      
+      onMapLoadCallback.onLoad(map);
+    }
+  };
+  
   private Runnable onEsriLoad = new Runnable() {
 
     @Override
@@ -53,15 +70,9 @@ public class MapPanel extends SimplePanel {
       mapOptions.setShowAttribution(false);
       mapOptions.showSlider(true);
       
-      MapWidget map = new MapWidget(MapPanel.this, onMapLoad, mapOptions);
-      
-      OverviewMap.Parameters overviewParams = OverviewMap.Parameters.create();
-      overviewParams.setAttachTo("bottom-right");
-      overviewParams.setMap(map);
-      overviewParams.showMaximizeButton(true);
-      
-      new OverviewMap(overviewParams).startup();
+      new MapWidget(MapPanel.this, onMapLoad, mapOptions);
     }
   };
+  
   
 }
