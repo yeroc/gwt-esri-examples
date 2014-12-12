@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.SimplePanel;
 
+import edu.ucdavis.cstars.client.ESRI;
 import edu.ucdavis.cstars.client.MapWidget;
 import edu.ucdavis.cstars.client.MapWidget.BaseMap;
 import edu.ucdavis.cstars.client.Util;
@@ -58,6 +59,8 @@ public class MapPanel extends SimplePanel {
     @Override
     public void run() {
       GWT.log("onEsriLoad");
+      
+      ESRI.setCorsDetectionEnabled(false);
       
       MapWidget.Options mapOptions = MapWidget.Options.create();
       
