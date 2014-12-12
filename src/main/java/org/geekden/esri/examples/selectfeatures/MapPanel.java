@@ -42,12 +42,11 @@ public class MapPanel extends SimplePanel {
   private MapLoadHandler onMapLoad = new MapLoadHandler() {
 
     @Override
-    public void onLoad(MapWidget map)
-    {
+    public void onLoad(MapWidget map) {
       OverviewMap.Parameters overviewParams = OverviewMap.Parameters.create();
-      overviewParams.setAttachTo("bottom-right");
+      overviewParams.setAttachTo("top-right");
       overviewParams.setMap(map);
-      overviewParams.setVisible(false);
+      overviewParams.setVisible(true);
       overviewParams.showMaximizeButton(true);
       
       new OverviewMap(overviewParams).startup();
@@ -73,6 +72,5 @@ public class MapPanel extends SimplePanel {
       new MapWidget(MapPanel.this, onMapLoad, mapOptions);
     }
   };
-  
   
 }

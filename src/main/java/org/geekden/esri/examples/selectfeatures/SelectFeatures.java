@@ -65,8 +65,6 @@ public class SelectFeatures implements EntryPoint
     
     buttonPanel.addStyleName("btn-toolbar");
     
-    buttonPanel.add(selectFeaturesButton);
-    buttonPanel.add(clearSelectionButton);
   }
   
   private FeatureLayer createFeatureLayer() {
@@ -93,18 +91,16 @@ public class SelectFeatures implements EntryPoint
     fieldsSelectionSymbol.setColor(selectionFillColor);
     
     SimpleLineSymbol selectionOutlineSymbol = SimpleLineSymbol.create(StyleType.STYLE_DASHDOT, Color.create(255,0,0), 2);
-        fieldsSelectionSymbol.setOutline(selectionOutlineSymbol);
+    fieldsSelectionSymbol.setOutline(selectionOutlineSymbol);
         
     layer.setSelectionSymbol(fieldsSelectionSymbol);
     return layer;
   }
   
-  // now the map has loaded and you are ready to go
   private MapLoadHandler onMapLoad = new MapLoadHandler() {
 
     @Override
-    public void onLoad(MapWidget map)
-    {
+    public void onLoad(MapWidget map) {
       GWT.log("onMapLoad");
       
       initSelectToolbar(map);
@@ -166,7 +162,9 @@ public class SelectFeatures implements EntryPoint
         
       }
     });
-        
+
+    buttonPanel.add(selectFeaturesButton);
+    buttonPanel.add(clearSelectionButton);
   }
   
   private void sumGasProduction(JsArray<Graphic> features, Selections selectionMethod) {
